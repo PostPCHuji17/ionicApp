@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {User} from "../../modules/user";
 import {authService} from "../../services/authService";
 
 /**
@@ -15,7 +14,7 @@ import {authService} from "../../services/authService";
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-  user = {} as User;
+  user = {} as myHome.object.UserPrems;
   constructor(public navCtrl: NavController, public navParams: NavParams, private auth: authService) {
   }
 

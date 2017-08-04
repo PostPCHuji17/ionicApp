@@ -11,12 +11,18 @@ import {LoginPage} from "../pages/login/login";
 import {authService} from "../services/authService";
 import {AngularFireAuth} from "angularfire2/auth";
 import {RegisterPage} from "../pages/register/register";
+import {HomePage} from "../pages/home/home";
+import {StarterPage} from "../pages/starter/starter";
+import {AngularFireDatabase} from "angularfire2/database";
+import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    HomePage,
+    StarterPage
   ],
   imports: [
     BrowserModule,
@@ -27,14 +33,18 @@ import {RegisterPage} from "../pages/register/register";
   entryComponents: [
     MyApp,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    HomePage,
+    StarterPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     authService,
-    AngularFireAuth
+    AngularFireAuth,
+    AngularFireDatabase,
+    SpinnerDialog
   ]
 })
 export class AppModule {}
