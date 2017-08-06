@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {IonicPage, MenuController, NavController, NavParams, ViewController} from 'ionic-angular';
 import {authService} from "../../services/authService";
 import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 import {AngularFireDatabase} from "angularfire2/database";
@@ -17,11 +17,12 @@ import {dbServices} from "../../services/dbService";
   templateUrl: 'home.html',
 })
 export class HomePage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth : authService,private viewCtrl: ViewController, public spinnerDlg:SpinnerDialog, public db : dbServices) {
-    spinnerDlg.show("Loading your groups.");
+  activeMenu : string;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth : authService,private viewCtrl: ViewController, public spinnerDlg:SpinnerDialog, public db : dbServices,
+              public menuCtrl : MenuController) {
+    this.activeMenu = 'content';
+    this.menuCtrl.enable(true,'content');
     db.initUserProfile();
-
   }
 
   async createNewGroup(){

@@ -24,6 +24,7 @@ export class StarterPage {
       console.log("Subscribe triggered...");
       if(user) {
         this.beenHereDoneThat = false;
+        this.navCtrl.setRoot(HomePage);
         this.navCtrl.push(HomePage);
       } else {
         this.beenHereDoneThat = false;

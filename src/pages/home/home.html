@@ -4,12 +4,30 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<style>
+  .button.activated{
+    box-shadow: none !important;
+    border-color: rgba(0,0,0,0) !important;
+    outline: none !important;
+  }
+</style>
+<ion-header>
 
+  <ion-navbar color="primary" #content>
+    <button ion-button icon-only [menuToggle]>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      {{db.currentGroup ? db.currentGroup.title : 'Select Group'}}
+    </ion-title>
+  </ion-navbar>
 
-<ion-nav color="primary" id="nav" #content [root]="HomePage"></ion-nav>
-<ion-menu [content]="content" >
+</ion-header>
+
+<ion-menu id="nav" [content]="content" >
   <ion-header>
     <ion-toolbar color="primary">
+
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -31,11 +49,12 @@
   </ion-content>
 </ion-menu>
 
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-title>{{db.currentGroup ? db.currentGroup.title : 'Select Group'}}</ion-title>
-  </ion-navbar>
-</ion-header>
+<!--<ion-header>-->
+  <!--<button ion-button (click)="menuCtrl.open()">-->
+    <!--<ion-icon name="menu"></ion-icon>-->
+  <!--</button>-->
+  <!--<ion-title>{{db.currentGroup ? db.currentGroup.title : 'Select Group'}}</ion-title>-->
+<!--</ion-header>-->
 
 
 <ion-content padding>
@@ -52,4 +71,6 @@
   <button ion-button (click)="createNewGroup()" color="primary">Create new Group</button>
   <button ion-button (click)="db.getUserGroups()" color="primary">Get User Groups</button>
   <button ion-button (click)="auth.signOut()" color="primary">Sign out</button>
+  <button ion-button menuToggle>Open Menu</button>
+
 </ion-content>
