@@ -6,11 +6,10 @@
 -->
 
 
-<ion-nav color="primary" id="nav" #content [root]="HomePage">
-</ion-nav>
-<ion-menu [content]="content">
+<ion-nav color="primary" id="nav" #content [root]="HomePage"></ion-nav>
+<ion-menu [content]="content" >
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -33,8 +32,8 @@
 </ion-menu>
 
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>{{db.currentGroup ? db.currentGroup.title : 'Select Group'}}</ion-title>
   </ion-navbar>
 </ion-header>
 
