@@ -68,6 +68,8 @@
     Group Selected! {{db.currentGroup.title}}
   </ion-item>
   <ion-item>
+    Plus : {{db.currentGroup ? db.currentGroup.plus : 0}}
+    Minus : {{db.currentGroup ? db.currentGroup.minus : 0}}
     <ion-item-group>
       <ion-item>
           <button>up</button>
@@ -77,7 +79,7 @@
       <ion-item>
 
         <ion-list *ngIf="db.currentGroup">
-          <ion-item *ngFor="let g of db.currentGroup.transactions">
+          <ion-item *ngFor="let g of db.currentGroup.transaction">
 
             {{g.title}}
 

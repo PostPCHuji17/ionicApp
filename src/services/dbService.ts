@@ -4,6 +4,7 @@ import {Injectable} from "@angular/core";
 import {AngularFireDatabase} from "angularfire2/database";
 import {authService} from "./authService";
 import 'rxjs/add/operator/take'
+import {min} from "rxjs/operator/min";
 
 @Injectable()
 export class dbServices {
@@ -40,11 +41,17 @@ export class dbServices {
 
   async selectSpecifcGroup(groupKey) {
     console.log("Selecting specific group");
-    const group = await this.fireDB.object('/groups/' + groupKey);
+    const group = await this.fireDB.object('/groups/' + groupKey).take(1);
     group.subscribe(groupElem => {
+      console.log(groupElem);
       this.currentGroup = groupElem;
-      this.currentGroup.transactions = [];
-      groupElem.transactions.map((v,k) => this.currentGroup.transactions.push(v))
+      this.currentGroup.transaction = [];
+      Object.keys(groupElem.transactions).forEach(k => this.currentGroup.transaction.push(groupElem.transactions[k]));
+      this.currentGroup.plus = 0;
+      this.currentGroup.minus = 0;
+      console.log(this.currentGroup.transactions);
+      groupElem.transaction.forEach(v => this.currentGroup.plus += Math.max(0,v.amount));
+      groupElem.transaction.forEach(v => this.currentGroup.minus += Math.min(0,v.amount));
     });
     await this.fireDB.object('/users/' + this.authServ.getUId()).update({'selectedGroup': groupKey});
   }
