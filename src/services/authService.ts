@@ -10,7 +10,7 @@ export class authService {
 
   displayName = '' as string;
   photoURL = '' as string;
-  private fbProfile : firebase.User;
+  public fbProfile : firebase.User;
   public userProfile: Subject<firebase.User> = new Subject<firebase.User>();
   constructor(private fireAuth: AngularFireAuth) {
     fireAuth.authState.subscribe((user: firebase.User) => {

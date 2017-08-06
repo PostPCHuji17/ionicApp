@@ -29,9 +29,9 @@ declare namespace myHome.object {
     id : string;
     picture : string;
     title : string;
-    email : Array<string>;
-    tags : Array<Tag>;
-    transactions : Array<Transaction>;
+    email? : Array<string>;
+    tags? : Array<Tag>;
+    transactions? : Array<Transaction>;
   }
 
   interface Transaction {

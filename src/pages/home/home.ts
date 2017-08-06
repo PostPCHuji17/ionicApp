@@ -24,6 +24,10 @@ export class HomePage {
 
   }
 
+  async createNewGroup(){
+    const push = await this.db.createNewGroup({id:'hello',picture:'pic',title:'myGroup',email:new Array<string>(5), tags: new Array<myHome.object.Tag>(0)});
+  }
+
   ionViewCanLeave():boolean{
     return this.auth.displayName === '';
   }

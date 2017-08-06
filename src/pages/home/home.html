@@ -17,5 +17,14 @@
   <ion-item>
 
   </ion-item>
+  <ion-list>
+    <ion-item *ngFor="let g of db.userGroups">
+      {{g.id}}
+      {{g.title}}
+      {{g.picture}}
+    </ion-item>
+  </ion-list>
+  <button ion-button (click)="createNewGroup()" color="primary">Create new Group</button>
+  <button ion-button (click)="db.getUserGroups()" color="primary">Get User Groups</button>
   <button ion-button (click)="auth.signOut()" color="primary">Sign out</button>
 </ion-content>
