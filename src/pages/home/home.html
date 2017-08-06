@@ -76,13 +76,13 @@
 
       <ion-item>
 
-        <!--<ion-list *ngIf="db.currentGroup">-->
-          <!--<ion-item *ngFor="let g of db.currentGroup.transactions">-->
+        <ion-list *ngIf="db.currentGroup">
+          <ion-item *ngFor="let g of db.currentGroup.transactions">
 
-            <!--&lt;!&ndash;{{g.title}}&ndash;&gt;-->
+            {{g.title}}
 
-          <!--</ion-item>-->
-        <!--</ion-list>-->
+          </ion-item>
+        </ion-list>
 
         <ion-item>
           <button>down</button>
