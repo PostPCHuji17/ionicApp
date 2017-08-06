@@ -29,6 +29,12 @@ export class HomePage {
     const push = await this.db.createNewGroup({id:'hello',picture:'pic',title:'myGroup',email:new Array<string>(5), tags: new Array<myHome.object.Tag>(0)});
   }
 
+  log(){
+    console.log(this.db.currentGroup.transactions);
+    console.log(this.db.currentGroup);
+
+  }
+
   async selectGroup(groupKey){
     this.db.selectSpecifcGroup(groupKey);
   }
@@ -41,4 +47,7 @@ export class HomePage {
     this.viewCtrl.showBackButton(false);
   }
 
+  printToScreen(myStr) {
+  console.log(myStr)
+}
 }

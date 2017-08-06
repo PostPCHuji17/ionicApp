@@ -5,9 +5,9 @@
   Ionic pages and navigation.
 -->
 <style>
-  .button.activated{
+  .button.activated {
     box-shadow: none !important;
-    border-color: rgba(0,0,0,0) !important;
+    border-color: rgba(0, 0, 0, 0) !important;
     outline: none !important;
   }
 </style>
@@ -24,7 +24,8 @@
 
 </ion-header>
 
-<ion-menu id="nav" [content]="content" >
+
+<ion-menu id="nav" [content]="content">
   <ion-header>
     <ion-toolbar color="primary">
 
@@ -56,30 +57,44 @@
 </ion-menu>
 
 <!--<ion-header>-->
-  <!--<button ion-button (click)="menuCtrl.open()">-->
-    <!--<ion-icon name="menu"></ion-icon>-->
-  <!--</button>-->
-  <!--<ion-title>{{db.currentGroup ? db.currentGroup.title : 'Select Group'}}</ion-title>-->
+<!--<button ion-button (click)="menuCtrl.open()">-->
+<!--<ion-icon name="menu"></ion-icon>-->
+<!--</button>-->
+<!--<ion-title>{{db.currentGroup ? db.currentGroup.title : 'Select Group'}}</ion-title>-->
 <!--</ion-header>-->
 
-<ion-item>
-  <ion-item-group>
-    <ion-item>UP</ion-item>
-    <ion-item>UP2</ion-item>
-    <ion-item-divider ></ion-item-divider>
-    <ion-item>
-      <ion-list>
-        <ion-item>DOWN</ion-item>
-        <ion-item>DOWN2</ion-item>
-      </ion-list>
-    </ion-item>
-  </ion-item-group>
-</ion-item>
 
 <ion-content padding>
   <ion-item *ngIf="db.currentGroup">
     Group Selected! {{db.currentGroup.title}}
   </ion-item>
+  <ion-item>
+    <ion-item-group>
+      <ion-item>
+          <button>up</button>
+      </ion-item>
+      <!--<ion-item-divider ></ion-item-divider>-->
+
+      <ion-item>
+
+        <!--<ion-list *ngIf="db.currentGroup">-->
+          <!--<ion-item *ngFor="let g of db.currentGroup.transactions">-->
+
+            <!--&lt;!&ndash;{{g.title}}&ndash;&gt;-->
+
+          <!--</ion-item>-->
+        <!--</ion-list>-->
+
+        <ion-item>
+          <button>down</button>
+        </ion-item>
+
+
+      </ion-item>
+    </ion-item-group>
+  </ion-item>
+
+
   <ion-list *ngIf="!db.currentGroup">
     <ion-item (click)="selectGroup(g.$key)" *ngFor="let g of db.userGroups">
       {{g.id}}
