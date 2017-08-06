@@ -9,7 +9,7 @@ import 'rxjs/add/operator/take'
 export class dbServices {
   public currentUser = {} as myHome.object.UserProfile;
   public userGroups = [] as Array<myHome.object.Group>;
-  public currentGroup = {} as myHome.object.Group;
+  public currentGroup = null;
   constructor(private fireDB: AngularFireDatabase, private authServ : authService) {
 
   }
@@ -18,7 +18,10 @@ export class dbServices {
     try{
       const profile =  await this.fireDB.object('/users/'+this.authServ.getUId());
       profile.subscribe(elem=> {
-                                if(elem)this.currentUser = elem;
+                                if(elem) {
+                                  this.currentUser = elem;
+                                  if(elem.selectedGroup) this.selectSpecifcGroup(elem.selectedGroup);
+                                }
                                 else this.currentUser = {} as myHome.object.UserProfile});
     } catch(e){
       console.log("No client logged in");
@@ -36,8 +39,13 @@ export class dbServices {
     })
   }
 
+  async selectSpecifcGroup(groupKey){
+    const group = await this.fireDB.object('/groups/'+groupKey);
+    group.subscribe(groupElem => this.currentGroup = groupElem);
+    await this.fireDB.object('/users/'+this.authServ.getUId()).update({'selectedGroup' : groupKey});
+  }
+
   async createNewGroup(group : myHome.object.Group){
-    // await this.fireDB.object('/users/'+this.authServ.getUId()).set({displayName : this.authServ.displayName, photoURL : this.authServ.photoURL, groups : [], email : this.authServ.fbProfile.email});
     const key = await this.fireDB.list('/groups').push(group);
     this.addGroupToUser(this.currentUser, key.getKey());
   }
