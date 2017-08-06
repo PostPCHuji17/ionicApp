@@ -21,7 +21,8 @@
         "@angular/platform-browser": "4.1.3",
         "@angular/platform-browser-dynamic": "4.1.3",
         "@ionic-native/camera": "^3.12.1",
-        "@ionic-native/core": "3.12.1",
+        "@ionic-native/core": "^3.14.0",
+        "@ionic-native/geolocation": "^4.1.0",
         "@ionic-native/google-plus": "^4.1.0",
         "@ionic-native/speech-recognition": "^3.12.1",
         "@ionic-native/spinner-dialog": "^4.1.0",
@@ -53,8 +54,9 @@
     },
     "devDependencies": {
         "@ionic/app-scripts": "1.3.12",
-        "@ionic/cli-plugin-cordova": "1.4.0",
-        "@ionic/cli-plugin-ionic-angular": "1.3.1",
+        "@ionic/cli-plugin-cordova": "1.6.2",
+        "@ionic/cli-plugin-ionic-angular": "1.4.1",
+        "ionic": "3.7.0",
         "typescript": "2.3.4"
     },
     "description": "An Ionic project",

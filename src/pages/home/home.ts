@@ -47,7 +47,4 @@ export class HomePage {
     this.viewCtrl.showBackButton(false);
   }
 
-  printToScreen(myStr) {
-  console.log(myStr)
-}
 }
