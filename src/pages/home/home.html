@@ -7,7 +7,7 @@
 
 
 <ion-nav color="primary" id="nav" #content [root]="HomePage"></ion-nav>
-<ion-menu [content]="content" >
+<ion-menu [content]="content">
   <ion-header>
     <ion-toolbar color="primary">
       <ion-title>Menu</ion-title>
@@ -15,16 +15,22 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <button ion-item (click)="openPage(homePage)">
-        Home
+      <button ion-item (click)="changeGroup()" color="primary">
+        Change group
       </button>
-      <button ion-item (click)="openPage(friendsPage)">
-        Friends
+      <button ion-item (click)="editUserInfo()" color="primary">
+        Edit user info
       </button>
-      <button ion-item (click)="openPage(eventsPage)">
-        Events
+      <button ion-item (click)="createNewGroup()" color="primary">
+        Create new Group
       </button>
-      <button ion-item (click)="closeMenu()">
+      <button ion-item (click)="db.getUserGroups()" color="primary">
+        Get User Groups
+      </button>
+      <button ion-item (click)="auth.signOut()" color="primary">
+        Sign out
+      </button>
+      <button ion-item (click)="closeMenu()" color="primary">
         Close Menu
       </button>
     </ion-list>
@@ -37,6 +43,19 @@
   </ion-navbar>
 </ion-header>
 
+<ion-item>
+  <ion-item-group>
+    <ion-item>UP</ion-item>
+    <ion-item>UP2</ion-item>
+    <ion-item-divider ></ion-item-divider>
+    <ion-item>
+      <ion-list>
+        <ion-item>DOWN</ion-item>
+        <ion-item>DOWN2</ion-item>
+      </ion-list>
+    </ion-item>
+  </ion-item-group>
+</ion-item>
 
 <ion-content padding>
   <ion-item *ngIf="db.currentGroup">
@@ -49,7 +68,7 @@
       {{g.picture}}
     </ion-item>
   </ion-list>
-  <button ion-button (click)="createNewGroup()" color="primary">Create new Group</button>
-  <button ion-button (click)="db.getUserGroups()" color="primary">Get User Groups</button>
-  <button ion-button (click)="auth.signOut()" color="primary">Sign out</button>
+
+  <!--<button ion-button (click)="auth.signOut()" color="primary">Sign out</button>-->
 </ion-content>
+
