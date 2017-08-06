@@ -17,6 +17,7 @@ import {AngularFireDatabase} from "angularfire2/database";
 import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 import {dbServices} from "../services/dbService";
 import {PostRegisterPage} from "../pages/post-register/post-register";
+import {GooglePlus} from "@ionic-native/google-plus";
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {PostRegisterPage} from "../pages/post-register/post-register";
     dbServices,
     AngularFireAuth,
     AngularFireDatabase,
-    SpinnerDialog
+    SpinnerDialog,
+    GooglePlus
   ]
 })
 export class AppModule {}

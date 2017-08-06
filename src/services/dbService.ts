@@ -39,10 +39,14 @@ export class dbServices {
     })
   }
 
-  async selectSpecifcGroup(groupKey){
-    const group = await this.fireDB.object('/groups/'+groupKey);
-    group.subscribe(groupElem => this.currentGroup = groupElem);
-    await this.fireDB.object('/users/'+this.authServ.getUId()).update({'selectedGroup' : groupKey});
+  async selectSpecifcGroup(groupKey) {
+    const group = await this.fireDB.object('/groups/' + groupKey);
+    group.subscribe(groupElem => {
+      this.currentGroup = groupElem;
+      this.currentGroup.transactions = [];
+      groupElem.map((v,k) => this.currentGroup.transactions.push(v))
+    });
+    await this.fireDB.object('/users/' + this.authServ.getUId()).update({'selectedGroup': groupKey});
   }
 
   async createNewGroup(group : myHome.object.Group){

@@ -3,6 +3,7 @@ import {AngularFireAuth} from 'angularfire2/auth'
 import * as firebase from "firebase/app";
 import {Subject} from "rxjs/Subject";
 import {Observable} from "rxjs/Observable";
+import {GooglePlus} from "@ionic-native/google-plus";
 // import AuthCredential = firebase.auth.AuthCredential;
 
 @Injectable()
@@ -12,7 +13,7 @@ export class authService {
   photoURL = '' as string;
   public fbProfile : firebase.User;
   public userProfile: Subject<firebase.User> = new Subject<firebase.User>();
-  constructor(private fireAuth: AngularFireAuth) {
+  constructor(private fireAuth: AngularFireAuth, private gPlus : GooglePlus) {
     fireAuth.authState.subscribe((user: firebase.User) => {
         if(user) {
           console.log(user);
@@ -66,7 +67,19 @@ export class authService {
   }
 
   async loginWithGoogle(){
-    this.fireAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider);
+    try {
+      const res = await this.gPlus.login({
+        'webClientId': '1058655073238-r7ornoicmbf59t9u9fucj1ggpndenq1n.apps.googleusercontent.com'
+      });
+      console.log("after login")
+      console.log(res);
+      const hello = await firebase.auth().signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken));
+      console.log('fater hello')
+      console.log(hello);
+    } catch(e){
+      console.log("Error");
+      console.log(e);
+    }
   }
 
   async signOut(){

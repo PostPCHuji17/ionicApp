@@ -18,7 +18,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      {{db.currentGroup ? db.currentGroup.title : 'Select Group'}}
+      {{db.currentGroup ? db.currentGroup.title : 'Select Group...'}}
     </ion-title>
   </ion-navbar>
 
@@ -27,7 +27,6 @@
 <ion-menu id="nav" [content]="content" >
   <ion-header>
     <ion-toolbar color="primary">
-
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -66,7 +65,6 @@
   <ion-item-group>
     <ion-item>UP</ion-item>
     <ion-item>UP2</ion-item>
-    <ion-item-divider ></ion-item-divider>
     <ion-item>
       <ion-list>
         <ion-item>DOWN</ion-item>
