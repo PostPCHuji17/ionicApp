@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {authService} from "../../services/authService";
+import {PostRegisterPage} from "../post-register/post-register";
 
 /**
  * Generated class for the RegisterPage page.
@@ -24,6 +25,7 @@ export class RegisterPage {
 
   register(){
     this.auth.register(this.user);
+    this.navCtrl.push(PostRegisterPage);
   }
 
 }

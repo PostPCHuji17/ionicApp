@@ -21,6 +21,7 @@ export class StarterPage {
   public beenHereDoneThat : boolean = true;
   constructor(public navCtrl: NavController, public navParams: NavParams, private auth : authService, private splash : SplashScreen) {
     this.auth.statusChanged().subscribe((user)=>{
+      console.log("Subscribe triggered...");
       if(user) {
         this.beenHereDoneThat = false;
         this.navCtrl.push(HomePage);
@@ -29,14 +30,6 @@ export class StarterPage {
         this.navCtrl.push(LoginPage);
       }
     });
-    this.splash.show();
-    setTimeout(()=>{
-      this.splash.hide();
-      if(this.auth.displayName === ''){
-        this.beenHereDoneThat = false;
-        this.navCtrl.push(LoginPage);
-      }
-    }, 1000)
   }
 
   ionViewCanEnter(){

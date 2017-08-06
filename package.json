@@ -64,7 +64,8 @@
             "cordova-plugin-statusbar": {},
             "cordova-plugin-whitelist": {},
             "ionic-plugin-keyboard": {},
-            "cordova-plugin-native-spinner": {}
+            "cordova-plugin-native-spinner": {},
+            "cordova-plugin-camera": {}
         },
         "platforms": [
             "android"

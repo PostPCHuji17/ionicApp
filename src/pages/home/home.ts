@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {authService} from "../../services/authService";
-import {SplashScreen} from "@ionic-native/splash-screen";
-import {LoginPage} from "../login/login";
+import {SpinnerDialog} from "@ionic-native/spinner-dialog";
+import {AngularFireDatabase} from "angularfire2/database";
+import {dbServices} from "../../services/dbService";
 
 /**
  * Generated class for the HomePage page.
@@ -17,11 +18,10 @@ import {LoginPage} from "../login/login";
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth : authService,private viewCtrl: ViewController, public splash:SplashScreen) {
-    this.auth.statusChanged().subscribe((user)=>{
-      console.log("status changed from home!");
-      console.log(user);
-    });
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth : authService,private viewCtrl: ViewController, public spinnerDlg:SpinnerDialog, public db : dbServices) {
+    spinnerDlg.show("Loading your groups.");
+    db.initUserProfile();
+
   }
 
   ionViewCanLeave():boolean{
@@ -29,7 +29,6 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
-    this.splash.hide();
     this.viewCtrl.showBackButton(false);
   }
 
