@@ -4,6 +4,7 @@ import * as firebase from "firebase/app";
 import {Subject} from "rxjs/Subject";
 import {Observable} from "rxjs/Observable";
 import {GooglePlus} from "@ionic-native/google-plus";
+import {Facebook} from "@ionic-native/facebook";
 // import AuthCredential = firebase.auth.AuthCredential;
 
 @Injectable()
@@ -13,7 +14,7 @@ export class authService {
   photoURL = '' as string;
   public fbProfile : firebase.User;
   public userProfile: Subject<firebase.User> = new Subject<firebase.User>();
-  constructor(private fireAuth: AngularFireAuth, private gPlus : GooglePlus) {
+  constructor(private fireAuth: AngularFireAuth, private gPlus : GooglePlus, private fb : Facebook) {
     fireAuth.authState.subscribe((user: firebase.User) => {
         if(user) {
           console.log(user);
@@ -68,13 +69,9 @@ export class authService {
 
   async loginWithGoogle(){
     try {
-      const res = await this.gPlus.login({
-        'webClientId': '1058655073238-r7ornoicmbf59t9u9fucj1ggpndenq1n.apps.googleusercontent.com'
-      });
-      console.log("after login")
-      console.log(res);
-      const hello = await firebase.auth().signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken));
-      console.log('fater hello')
+      const test = await this.fb.login(['email']);
+      console.log(test);
+      const hello = await firebase.auth().signInWithCredential(firebase.auth.FacebookAuthProvider.credential(test.authResponse.accessToken));
       console.log(hello);
     } catch(e){
       console.log("Error");

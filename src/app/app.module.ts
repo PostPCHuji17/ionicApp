@@ -18,6 +18,7 @@ import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 import {dbServices} from "../services/dbService";
 import {PostRegisterPage} from "../pages/post-register/post-register";
 import {GooglePlus} from "@ionic-native/google-plus";
+import {Facebook} from "@ionic-native/facebook";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {GooglePlus} from "@ionic-native/google-plus";
     AngularFireAuth,
     AngularFireDatabase,
     SpinnerDialog,
-    GooglePlus
+    GooglePlus,
+    Facebook
   ]
 })
 export class AppModule {}
