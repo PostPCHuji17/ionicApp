@@ -67,41 +67,12 @@
   <ion-item *ngIf="db.currentGroup">
     Group Selected! {{db.currentGroup.title}}
   </ion-item>
-  <ion-item>
-    Plus : {{db.currentGroup ? db.currentGroup.plus : 0}}
-    Minus : {{db.currentGroup ? db.currentGroup.minus : 0}}
-    <ion-item-group>
-      <ion-item>
-          <button>up</button>
-      </ion-item>
-      <!--<ion-item-divider ></ion-item-divider>-->
-
-      <ion-item>
-
-        <ion-list *ngIf="db.currentGroup">
-          <ion-item *ngFor="let g of db.currentGroup.transaction">
-
-            {{g.title}}
-
-          </ion-item>
-        </ion-list>
-
-        <ion-item>
-          <button>down</button>
-        </ion-item>
-
-
-      </ion-item>
-    </ion-item-group>
-  </ion-item>
-
-
-  <ion-list *ngIf="!db.currentGroup">
-    <ion-item (click)="selectGroup(g.$key)" *ngFor="let g of db.userGroups">
-      {{g.id}}
-      {{g.title}}
-      {{g.picture}}
-    </ion-item>
+  <ion-list *ngIf="db.transactions">
+    <ion-list-header>
+      Transactions
+    </ion-list-header>
+    <div *ngFor="let g of db.transactions | slice:0:25" detail-push transaction [data]="g">
+    </div>
   </ion-list>
 
   <!--<button ion-button (click)="auth.signOut()" color="primary">Sign out</button>-->

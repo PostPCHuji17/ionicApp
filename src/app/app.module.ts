@@ -19,6 +19,7 @@ import {dbServices} from "../services/dbService";
 import {PostRegisterPage} from "../pages/post-register/post-register";
 import {GooglePlus} from "@ionic-native/google-plus";
 import {Facebook} from "@ionic-native/facebook";
+import { TransactionComponent } from '../components/transaction/transaction';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {Facebook} from "@ionic-native/facebook";
     RegisterPage,
     HomePage,
     StarterPage,
-    PostRegisterPage
+    PostRegisterPage,
+    TransactionComponent
   ],
   imports: [
     BrowserModule,

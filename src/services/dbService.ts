@@ -9,6 +9,8 @@ import {min} from "rxjs/operator/min";
 @Injectable()
 export class dbServices {
   public currentUser = {} as myHome.object.UserProfile;
+  public transactions;
+  public tags;
   public userGroups = [] as Array<myHome.object.Group>;
   public currentGroup = null;
   constructor(private fireDB: AngularFireDatabase, private authServ : authService) {
@@ -40,19 +42,12 @@ export class dbServices {
   }
 
   async selectSpecifcGroup(groupKey) {
-    console.log("Selecting specific group");
     const group = await this.fireDB.object('/groups/' + groupKey).take(1);
-    group.subscribe(groupElem => {
-      console.log(groupElem);
-      this.currentGroup = groupElem;
-      this.currentGroup.transaction = [];
-      Object.keys(groupElem.transactions).forEach(k => this.currentGroup.transaction.push(groupElem.transactions[k]));
-      this.currentGroup.plus = 0;
-      this.currentGroup.minus = 0;
-      console.log(this.currentGroup.transactions);
-      groupElem.transaction.forEach(v => this.currentGroup.plus += Math.max(0,v.amount));
-      groupElem.transaction.forEach(v => this.currentGroup.minus += Math.min(0,v.amount));
-    });
+    const transactions = await this.fireDB.list('/groups/' + groupKey+'/transactions');
+    const tags = await this.fireDB.list('/groups/' + groupKey+'/tags');
+    group.subscribe(groupElem => {this.currentGroup = groupElem;});
+    transactions.subscribe(groupElem => {this.transactions = groupElem;});
+    tags.subscribe(groupElem => {this.tags = groupElem;});
     await this.fireDB.object('/users/' + this.authServ.getUId()).update({'selectedGroup': groupKey});
   }
 
