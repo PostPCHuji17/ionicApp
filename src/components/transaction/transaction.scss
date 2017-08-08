@@ -1,3 +1,16 @@
-transaction {
+ion-note {
+  font-size: 12px;
+  align-self: flex-end;
+  margin-top: 14px;
+}
 
+ion-list {
+  ion-icon[item-end] {
+    margin-right: 20px !important;
+    margin-left: 17px!important;
+  }
+  ion-icon[item-start] {
+    margin-left: 10px !important;
+    margin-right: -2px !important;
+  }
 }

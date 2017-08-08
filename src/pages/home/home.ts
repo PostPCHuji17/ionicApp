@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
-import {IonicPage, MenuController, NavController, NavParams, ViewController} from 'ionic-angular';
+import {Component, HostListener, Inject, ViewChild} from '@angular/core';
+import {
+  Content, IonicPage, LoadingController, MenuController, NavController, NavParams,
+  ViewController
+} from 'ionic-angular';
 import {authService} from "../../services/authService";
 import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 import {AngularFireDatabase} from "angularfire2/database";
 import {dbServices} from "../../services/dbService";
+import {galleryService} from "../../services/galleryService";
 
 /**
  * Generated class for the HomePage page.
@@ -17,10 +21,11 @@ import {dbServices} from "../../services/dbService";
   templateUrl: 'home.html',
 })
 export class HomePage {
-  activeMenu : string;
+  @ViewChild(Content)
+  content:Content;
+  activeMenu : boolean = true;
   constructor(public navCtrl: NavController, public navParams: NavParams, public auth : authService,private viewCtrl: ViewController, public spinnerDlg:SpinnerDialog, public db : dbServices,
-              public menuCtrl : MenuController) {
-    this.activeMenu = 'content';
+              public menuCtrl : MenuController, private gallery : galleryService, private loading : LoadingController) {
     this.menuCtrl.enable(true,'content');
     db.initUserProfile();
   }
@@ -32,19 +37,21 @@ export class HomePage {
   log(){
     console.log(this.db.currentGroup.transactions);
     console.log(this.db.currentGroup);
-
   }
 
   async selectGroup(groupKey){
     this.db.selectSpecifcGroup(groupKey);
   }
 
-  ionViewCanLeave():boolean{
-    return this.auth.displayName === '';
-  }
-
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false);
+  }
+
+  async getPic(){
+    var loading = this.loading.create({
+      content : "Uploading.."
+    });
+    await this.gallery.takePhoto(this.db.currentGroup.transactions['-Kqs0S6ZiIeA5Kx4QZiI'], loading);
   }
 
 }

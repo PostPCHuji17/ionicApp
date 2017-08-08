@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import {IonicApp, IonicErrorHandler, IonicModule, Loading, LoadingController} from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
 import { MyApp } from './app.component';
 import {AngularFireModule} from "angularfire2";
 import {FIREBASE_CONFIG} from "./appFirebaseConfig";
@@ -17,9 +16,12 @@ import {AngularFireDatabase} from "angularfire2/database";
 import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 import {dbServices} from "../services/dbService";
 import {PostRegisterPage} from "../pages/post-register/post-register";
-import {GooglePlus} from "@ionic-native/google-plus";
 import {Facebook} from "@ionic-native/facebook";
 import { TransactionComponent } from '../components/transaction/transaction';
+import {ImagePicker} from "@ionic-native/image-picker";
+import {galleryService} from "../services/galleryService";
+import {Camera} from "@ionic-native/camera";
+import {TransactionPage} from "../pages/transaction/transaction";
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { TransactionComponent } from '../components/transaction/transaction';
     HomePage,
     StarterPage,
     PostRegisterPage,
-    TransactionComponent
+    TransactionComponent,
+    TransactionPage
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { TransactionComponent } from '../components/transaction/transaction';
     RegisterPage,
     HomePage,
     StarterPage,
-    PostRegisterPage
+    PostRegisterPage,
+    TransactionPage
   ],
   providers: [
     StatusBar,
@@ -51,11 +55,14 @@ import { TransactionComponent } from '../components/transaction/transaction';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     authService,
     dbServices,
+    galleryService,
     AngularFireAuth,
     AngularFireDatabase,
     SpinnerDialog,
-    GooglePlus,
-    Facebook
+    Facebook,
+    ImagePicker,
+    Camera,
+    LoadingController
   ]
 })
 export class AppModule {}

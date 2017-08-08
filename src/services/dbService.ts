@@ -1,10 +1,11 @@
 
 
-import {Injectable} from "@angular/core";
+import {Inject, Injectable} from "@angular/core";
 import {AngularFireDatabase} from "angularfire2/database";
 import {authService} from "./authService";
 import 'rxjs/add/operator/take'
-import {min} from "rxjs/operator/min";
+import {FirebaseApp} from "angularfire2";
+import * as firebase from 'firebase';
 
 @Injectable()
 export class dbServices {
@@ -13,7 +14,7 @@ export class dbServices {
   public tags;
   public userGroups = [] as Array<myHome.object.Group>;
   public currentGroup = null;
-  constructor(private fireDB: AngularFireDatabase, private authServ : authService) {
+  constructor(private fireDB: AngularFireDatabase, private authServ : authService, private firebaseApp: FirebaseApp) {
 
   }
 
@@ -881,6 +882,10 @@ export class dbServices {
 
   async updateTag(tag: myHome.object.Tag, group : myHome.object.Group){
     await this.fireDB.object('/groups/'+group.id+'/tags/'+tag.id).set(tag)
+  }
+
+  async addPictureToTransaction(imageURI : string, transactionId : string){
+    await this.fireDB.list('/groups/'+this.currentGroup.id+'/transactions/'+transactionId+'/photos').push(imageURI);
   }
 
 

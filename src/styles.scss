@@ -1,0 +1,14 @@
+::-webkit-scrollbar{
+  display:none;
+}
+
+
+ion-fab.show {
+  opacity: 1;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+ion-fab.hide {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}

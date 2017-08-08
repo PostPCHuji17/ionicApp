@@ -1,13 +1,15 @@
 <!-- Generated template for the TransactionComponent component -->
 <ion-item>
-  <ion-avatar *ngIf="start" item-start>
+  <ion-note item-end>3:43 pm</ion-note>
+  <ion-avatar *ngIf="start" item-start (click)="openTransDialog()">
     <img src="{{data.photoURL}}">
   </ion-avatar>
-  <ion-avatar *ngIf="!start" item-end>
+  <ion-avatar *ngIf="!start" item-end (click)="openTransDialog()">
     <img src="{{data.photoURL}}">
   </ion-avatar>
   <h2>{{data.creator}}</h2>
   <p>{{amount}}</p>
+
   <ion-icon *ngIf="start" item-end [name]="arrow" [color]="color"></ion-icon>
   <ion-icon *ngIf="!start" item-start [name]="arrow" [color]="color"></ion-icon>
 </ion-item>

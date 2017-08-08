@@ -11,6 +11,7 @@ declare namespace myHome.object {
     displayName?: string;
     picture?: string;
     thumb_picture?: string;
+    selectedGroup?: string;
   }
 
   interface Tag {
@@ -35,7 +36,7 @@ declare namespace myHome.object {
   }
 
   interface Transaction {
-    id: number;
+    id: string;
     creator: string;
     group_id: string;
     title: string;

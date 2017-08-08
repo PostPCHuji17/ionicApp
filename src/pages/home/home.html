@@ -63,17 +63,25 @@
 <!--</ion-header>-->
 
 
-<ion-content padding>
+<ion-content>
   <ion-item *ngIf="db.currentGroup">
     Group Selected! {{db.currentGroup.title}}
   </ion-item>
+  <ion-list-header color="primary">
+    Transactions
+  </ion-list-header>
   <ion-list *ngIf="db.transactions">
-    <ion-list-header>
-      Transactions
-    </ion-list-header>
     <div *ngFor="let g of db.transactions | slice:0:25" detail-push transaction [data]="g">
     </div>
   </ion-list>
-
+  <ion-fab right bottom [ngClass]="{'show' : activeMenu, 'hide' : !activeMenu}">
+    <button ion-fab><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab (click)="getPic()" ><ion-icon name="camera"></ion-icon></button>
+      <button ion-fab><ion-icon name="add"></ion-icon></button>
+      <button ion-fab><ion-icon name="add"></ion-icon></button>
+      <button ion-fab><ion-icon name="add"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
   <!--<button ion-button (click)="auth.signOut()" color="primary">Sign out</button>-->
 </ion-content>

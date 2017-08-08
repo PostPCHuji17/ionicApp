@@ -1,0 +1,29 @@
+page-transaction {
+  .price{
+    font-size:80px;
+  }
+  .price.green{
+    color:green;
+  }
+  .price.red{
+    color:red;
+  }
+  .round-shape{
+    border-radius: 30px;
+    height: 40px;
+    width: 40px;
+  }
+  .inline{
+    display: inline-block;
+  }
+  .item-md .item-button{
+    height:40px;
+  }
+  .col {
+    padding: 0;
+  }
+  ion-scroll {
+    white-space: nowrap;
+    height: 100px;
+  }
+}
